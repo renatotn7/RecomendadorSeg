@@ -43,7 +43,7 @@ import java.util.List;
 public class ArffDataConvertor extends AbstractDataConvertor {
 
     /** The path of the input file */
-    private String dataPath;
+     private String dataPath;
 
     /** The relation name of input data */
     private String relationName;
