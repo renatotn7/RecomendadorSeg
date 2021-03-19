@@ -12,6 +12,8 @@ import com.bradseg.seguros.recomendacao.facade.RecomendacaoFacadeImpl;
 import com.bradseg.seguros.recomendacao.vo.DominioDTO;
 import com.bradseg.seguros.recomendacao.vo.ItemRankVO;
 
+import br.com.bradseg.sise.apolicevida.utils.serializacao.Serializacao;
+
 @RestController
 public class RecommenderService {
 	
@@ -66,6 +68,15 @@ public class RecommenderService {
 	 @RequestMapping(value="/ranking/fromuserdata",method = RequestMethod.GET)
 	 public List<ItemRankVO> userdata(@RequestParam int id_modelo,@RequestParam int sexosegurado,@RequestParam int estadocivil, @RequestParam int  classe_peso,@RequestParam int faixa_idade) {
 		 return  recomendacaoFacade.recuperaDadosFromModelo(id_modelo,sexosegurado,estadocivil,classe_peso,faixa_idade);
+		 //fazer um serviço para saber configurações de perfis sao possiveis mostrar ao usuario
+		
+		 
+	 }
+	 
+	 @RequestMapping(value="/ranking/fromuserdataArq",method = RequestMethod.GET)
+	 public List<ItemRankVO> userdata() {
+		 	return (List) Serializacao.lerArquivoBinario("RatingsList.obj");
+	//	 return  recomendacaoFacade.recuperaDadosFromModelo(1,0,0,0,0);
 		 //fazer um serviço para saber configurações de perfis sao possiveis mostrar ao usuario
 		
 		 

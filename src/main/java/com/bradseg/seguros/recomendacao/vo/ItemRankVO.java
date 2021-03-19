@@ -1,9 +1,24 @@
 package com.bradseg.seguros.recomendacao.vo;
 
-public class ItemRankVO {
+import java.io.Serializable;
+
+public class ItemRankVO implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	public String getNm_ramo() {
+		return nm_ramo;
+	}
+
+	public void setNm_ramo(String nm_ramo) {
+		this.nm_ramo = nm_ramo;
+	}
 	Integer id_produto,  id_plano;
 	String descProduto, descPlano;
+	String nm_ramo;
 	public String getDescProduto() {
 		return descProduto;
 	}
@@ -23,10 +38,13 @@ public class ItemRankVO {
 	
 	
 	
-	public ItemRankVO( Integer id_produto,Integer id_plano, Double rating) {
+	public ItemRankVO( Integer id_produto,Integer id_plano, String descProduto,String descPlano, String nm_ramo, Double rating) {
 		setId_plano(id_plano);
 		setId_produto(id_produto);
 		setRating(rating);
+		setDescPlano(descPlano);
+		setDescProduto(descProduto);
+		setNm_ramo(nm_ramo);
 		
 		
 	}

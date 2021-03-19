@@ -18,6 +18,7 @@ import com.bradseg.seguros.recomendacao.vo.DominioDTO;
 import com.bradseg.seguros.recomendacao.vo.ItemRankVO;
 import com.bradseg.seguros.recomendacao.vo.RatingVO;
 
+import br.com.bradseg.sise.apolicevida.utils.serializacao.Serializacao;
 import br.com.bradseg.sise.apolicevida.utils.texto.StringsUtils;
 
 
@@ -183,13 +184,15 @@ public class RecomendacaoDAOImpl {
 		 initConnection();
 		 StringBuilder sql =  new StringBuilder();
 			try {
-				sql.append(" select cd_produto,cd_plano,round(isnull(rating,ratinginf) ,3) rating from mdl_modelo_item where id_modelo = "+id_modelo+" order by isnull(rating,ratinginf)  desc");
+				sql.append("  select  a.cd_produto,a.cd_plano,b.NM_PRODUTO,c.nm_plano, e.nm_RM_SUSEP,  round (isnull(rating,ratinginf) ,3) rating from mdl_modelo_item a,PRD_PRODUTO b, prd_plano c,tbg_ramo d,tbg_ramo_susep e where id_modelo = 1 and a.cd_produto = b.cd_produto and c.cd_produto = b.cd_produto and c.cd_plano = a.cd_plano and b.CD_PRODUTO=c.CD_PRODUTO and b.CD_RM = d.CD_RM and d.CD_RM_SUSEP = e.CD_RM_SUSEP\r\n" + 
+						" and id_modelo = 1 and classe_peso = 6 and faixa_idade = 4 and sexosegurado = 1 and estadocivil=1\r\n" + 
+						"  order by round (isnull(rating,ratinginf) ,3)  desc");
 				//sql.append(" grp.cGrpDomnoUnfcaServc,");
 				stmt = connection.prepareStatement(sql.toString());
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
 					
-					ratings.add(new ItemRankVO(rs.getInt("cd_produto"),rs.getInt("cd_plano"),rs.getDouble("rating")));
+					ratings.add(new ItemRankVO(rs.getInt("cd_produto"),rs.getInt("cd_plano"),rs.getString("nm_produto"),rs.getString("nm_plano"),rs.getString("nm_rm_susep"),rs.getDouble("rating")));
 				}
 			} catch (SQLException e) {
 				// TODO Bloco catch gerado automaticamente
@@ -202,6 +205,7 @@ public class RecomendacaoDAOImpl {
 					e.printStackTrace();
 				}*/
 			}
+		
 			return ratings;
 	}
 	public void initConnection()  {
