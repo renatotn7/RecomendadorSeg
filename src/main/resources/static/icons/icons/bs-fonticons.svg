@@ -1,0 +1,63 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <font id="bs-fonticons" horiz-adv-x="512">
+    <font-face font-family="bs-fonticons"
+      units-per-em="1001" ascent="1001"
+      descent="0" />
+    <missing-glyph horiz-adv-x="0" />
+    <glyph glyph-name="arrow-down"
+      unicode="&#xE001;"
+      horiz-adv-x="1668.3333333333333" d="" />
+    <glyph glyph-name="arrow-right"
+      unicode="&#xE002;"
+      horiz-adv-x="546" d="" />
+    <glyph glyph-name="check"
+      unicode="&#xE003;"
+      horiz-adv-x="1001" d="" />
+    <glyph glyph-name="close"
+      unicode="&#xE004;"
+      horiz-adv-x="1001" d="" />
+    <glyph glyph-name="drag"
+      unicode="&#xE005;"
+      horiz-adv-x="627.3235294117646" d="" />
+    <glyph glyph-name="loading-white"
+      unicode="&#xE006;"
+      horiz-adv-x="1001" d="" />
+    <glyph glyph-name="loading"
+      unicode="&#xE007;"
+      horiz-adv-x="1001" d="" />
+    <glyph glyph-name="menu"
+      unicode="&#xE008;"
+      horiz-adv-x="1694" d="" />
+    <glyph glyph-name="more"
+      unicode="&#xE009;"
+      horiz-adv-x="3920.5833333333335" d="" />
+    <glyph glyph-name="pdf"
+      unicode="&#xE00A;"
+      horiz-adv-x="1001" d="" />
+    <glyph glyph-name="plus"
+      unicode="&#xE00B;"
+      horiz-adv-x="1001" d="" />
+    <glyph glyph-name="search"
+      unicode="&#xE00C;"
+      horiz-adv-x="1001" d="" />
+    <glyph glyph-name="servicos"
+      unicode="&#xE00D;"
+      horiz-adv-x="1001" d="" />
+    <glyph glyph-name="test-1"
+      unicode="&#xE00E;"
+      horiz-adv-x="1354.9316528506176" d="" />
+    <glyph glyph-name="test-2"
+      unicode="&#xE00F;"
+      horiz-adv-x="806.7817227153395" d="" />
+    <glyph glyph-name="test-3"
+      unicode="&#xE010;"
+      horiz-adv-x="1001.7515955449882" d="" />
+    <glyph glyph-name="test-4"
+      unicode="&#xE011;"
+      horiz-adv-x="942.8620603329578" d="" />
+  </font>
+</defs>
+</svg>

@@ -1,0 +1,35 @@
+svd
+
+conf.set("rec.recommender.similarity.key","user");
+				conf.set("rec.recommender.class","svdpp");
+				conf.set("rec.iterator.learnrate","0.00001");--aumentou em 10 aqui
+				conf.set("rec.iterator.learnrate.maximum","0.00001"); --aumentou em 10 aqui
+				conf.set("rec.iterator.maximum","4000");
+				conf.set("rec.user.regularization","0.01");
+				conf.set("rec.item.regularization","0.01");
+				conf.set("rec.impItem.regularization","0.01");
+				conf.set("rec.factor.number","10");
+				conf.set("rec.learnrate.bolddriver","false");
+				conf.set("rec.learnrate.decay","1");
+				conf.set("rec.recommender.isranking","true");
+				conf.set("rec.recommender.ranking.topn","1000");
+				
+				0.85
+				no rating test:
+				0.99
+				0.9966698653035351
+				se 
+				conf.set("rec.recommender.similarity.key","user");
+				conf.set("rec.recommender.class","svdpp");
+				conf.set("rec.iterator.learnrate","0.00001"); diminui em 10
+				conf.set("rec.iterator.learnrate.maximum","0.00001");
+				conf.set("rec.iterator.maximum","400");
+				conf.set("rec.user.regularization","0.01");
+				conf.set("rec.item.regularization","0.01");
+				conf.set("rec.impItem.regularization","0.01");
+				conf.set("rec.factor.number","10");
+				conf.set("rec.learnrate.bolddriver","false");
+				conf.set("rec.learnrate.decay","1");
+				conf.set("rec.recommender.isranking","true");
+				conf.set("rec.recommender.ranking.topn","1000");
+				entao sobe para 1.57 que é igual ao aleatorio
