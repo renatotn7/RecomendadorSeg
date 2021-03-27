@@ -25,13 +25,22 @@ import br.com.bradseg.sise.apolicevida.utils.serializacao.Serializacao;
 public class RecommenderService {
 	
 	public static RecomendacaoFacadeImpl recomendacaoFacade = new RecomendacaoFacadeImpl();
+	
 	 @RequestMapping(value="/dominio/estadocivil",method = RequestMethod.GET)
 	 public List<DominioDTO> dominioestadocivil() {
-		 return recomendacaoFacade.getDominioEstadoCivil();
+		// Serializacao.gravarArquivoBinario( recomendacaoFacade.getDominioEstadoCivil(), "GeneroList.obj");//lerArquivoBinario("RatingsList.obj");
+		 return (List) Serializacao.lerArquivoBinario("GeneroList.obj");
+		// return recomendacaoFacade.getDominioEstadoCivil();
+		 
 	 }
-	 @RequestMapping(value="/dominio/sexo",method = RequestMethod.GET)
+	
+	
+	 @RequestMapping(value="/dominio/genero",method = RequestMethod.GET)
 	 public  List<DominioDTO>  dominiosexo() {
-		 return recomendacaoFacade.getDominioSexo();
+		 //Serializacao.gravarArquivoBinario( recomendacaoFacade.getDominioSexo(), "SexoList.obj");//lerArquivoBinario("RatingsList.obj");
+		
+		 return (List) Serializacao.lerArquivoBinario("SexoList.obj");
+		 //return recomendacaoFacade.getDominioSexo();
 	 }
 	 
 	 @RequestMapping(value="/dominio/consultasdisponiveis",method = RequestMethod.GET)
@@ -88,7 +97,18 @@ public class RecommenderService {
 		
 		 
 	 }
-	 
+	 @RequestMapping(value="/ranking/fromuserdataArq2",method = RequestMethod.GET)
+	 public List<ItemRankVO> userdata(@RequestParam Integer id_modelo,@RequestParam Integer genero,@RequestParam Integer estadocivil, @RequestParam Double  peso,@RequestParam Integer idade) throws Exception {
+		 if(genero==null || id_modelo==null || estadocivil==null|| peso==null|| estadocivil==null) {
+			 throw new Exception();
+		 }
+		 
+		 return (List) Serializacao.lerArquivoBinario("RatingsList.obj");
+	//	 return  recomendacaoFacade.recuperaDadosFromModelo(1,0,0,0,0);
+		 //fazer um servi�o para saber configura��es de perfis sao possiveis mostrar ao usuario
+		
+		 
+	 }
 	 @RequestMapping(value = "/ranking/fromuserdataArq", method = RequestMethod.GET, produces = { MimeTypeUtils.TEXT_PLAIN_VALUE})
 		public ResponseEntity<ItemRankVO> jsn() {
 			try {

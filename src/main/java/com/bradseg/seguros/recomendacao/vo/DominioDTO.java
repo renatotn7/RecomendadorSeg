@@ -1,6 +1,13 @@
 package com.bradseg.seguros.recomendacao.vo;
 
-public class DominioDTO {
+import java.io.Serializable;
+
+public class DominioDTO implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 private String grupoDominio;
 private int idDominio ;
 private String valor;

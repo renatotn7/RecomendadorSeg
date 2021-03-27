@@ -87,12 +87,12 @@ public class RecomendacaoDAOImpl {
 				// TODO Bloco catch gerado automaticamente
 				e.printStackTrace();
 			}finally {
-				try {
+			/*	try {
 					connection.close();
 				} catch (SQLException e) {
 					// TODO Bloco catch gerado automaticamente
 					e.printStackTrace();
-				}
+				}*/
 			}
 		 return dominios;
 	}
@@ -113,12 +113,12 @@ public class RecomendacaoDAOImpl {
 				// TODO Bloco catch gerado automaticamente
 				e.printStackTrace();
 			}finally {
-				try {
+				/*try {
 					connection.close();
 				} catch (SQLException e) {
 					// TODO Bloco catch gerado automaticamente
 					e.printStackTrace();
-				}
+				}*/
 			}
 		 return dominios;
 	}
