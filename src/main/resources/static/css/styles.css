@@ -1,10 +1,40 @@
 @charset "UTF-8";
+
+.window{
+    display:none;
+    width:90%;
+    height:90%;
+    position:absolute;
+    left:0;
+    top:0;
+    background:#FFF;
+    z-index:9900;
+    padding:10px;
+    border-radius:10px;
+ 	overflow-y:auto;
+}
+
+
+#mascara{
+    display:none;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:9000;
+    background-color:#000;
+}
+  
+.fechar{display:block; text-align:right;}
+
+
+
 /*
   This mixin can be used to set the object-fit:
   @include object-fit(contain);
   or object-fit and object-position:
   @include object-fit(cover, top);
 */
+
 .bs-sr-only {
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);

@@ -13,20 +13,11 @@
 	
 	<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="/js/script.js"></script>
 	<title>Bradesco Seguros</title>
 </head>
 <body class="header">
- <style>
-      section {
-        padding-bottom: 50px;
-      }
-      
-      section:nth-child(even) {
-        background-color: #efefef;
-      }
-      
- </style>
-<div class="bs-bsweb-guide__code"></div>
+
             <div class="bs-header__container">
               <header class="bs-header--static bs-header">
                 <div class="bs-header__top">
@@ -136,49 +127,151 @@
 
 <section>
 	<div class="container">
-		<div><button class="btn btn-primary" name="btn" id="btn">Pesquisar</button></div>
-		<div class="table-responsive">
-			<br />
-			<table class="table table-bordered table-striped" id="table">
-			<tbody></tbody>	
-			</table>
+		<div><br />
+			<form class="bs-form" method="get">
+				<div class="bs-form__control">
+					<label for="estadoCivil" class="bs-form__label">Estado Civil:</label>
+						<select name="estCivil" id="estadoCivil" class="bs-form__field"></select>
+				</div>
+				<div class="bs-form__control">
+					<label for="genero" class="bs-form__label">Gênero:</label>
+						<select name="gen" id="genero" class="bs-form__field"></select>
+				</div>
+				<div class="bs-form__control">	
+					<label for="peso" class="bs-form__label">Peso(Kg):</label>
+						<input type="number" id="peso" name="peso" class="bs-form__field" /> 
+				</div>
+				<div class="bs-form__control">	
+					<label for="idade" class="bs-form__label">Idade:</label>
+						<input type="number" id="idade" name="idade" class="bs-form__field" /> 
+				</div>		
+				<div class="bs-button-group">
+            		<a href="#janela1" rel="modal" class="bs-button" id="btPesquisar">Pesquisar</a>
+            	</div>
+            	
+            	<div class="window" id="janela1"> 
+            	<a href="#" class="fechar">X Fechar</a>    
+					<!-- Conteúdo Modal --> 
+					<table class="table table-bordered table-striped" id="Modaltable">
+						<tbody></tbody>	
+					</table>
+				</div>
+				<!-- mascara para cobrir o site --> 
+				<div id="mascara"></div>
+			</form>
 		</div>
+		
+		<div class="bs-button-group">
+			<a href="#janela2" rel="modal" class="bs-button bs-button--ghost bs-button--primary" id="btn">Mostrar Tabela</a>
+		</div>
+		<div class="window" id="janela2"> 
+            	<a href="#" class="fechar">X Fechar</a>    
+					<!-- Conteúdo Modal --> 
+			<div class="table-responsive">
+				<br />
+				<table class="table table-bordered table-striped table-sm" id="table">
+					<tbody></tbody>	
+				</table>
+			</div>
+		</div>		
 	</div>
-<center><br /><br /></center>
-
-</section>
-<footer class="bs-footer__bottom">
 	
-</footer>
+</section>
 
-<script type="text/javascript">
-$('#btn').click(function() {
-	$.ajax ({
-		type: 'GET',
-		url: '/ranking/fromuserdataArq',
-		dataType: 'json',
-		contentType: 'application/json',
-		success: function(result){		
-			 var table = '';
-			 table += '<tr><th>ID</th><th>Id</th><th>Desc.Produto</th><th>Desc.Plano</th><th>Nm.Ramo</th><th>Rating</th></tr>';
-			  var x = 0;
-			  while (x < result.length) {
-				
-			    table += '<tr><td id="id_produto">' + result[x].id_produto + '</td>';
-			    table += '<td id="id_plano">' + result[x].id_plano + '</td>';
-			    table += '<td id="descProduto">' + result[x].descProduto + '</td>';
-			    table += '<td id="descPlano">' + result[x].descPlano + '</td>';
-			    table += '<td id="nm_ramo">' + result[x].nm_ramo + '</td>';
-			    table += '<td id="rating">' + result[x].rating + '</td></tr>';
-			    x++;
-			  }
-			  $('#table tbody').html(table);
-		}
-	});
-});
-</script>
-
-
+<section id="map">
+            <footer class="section comp-footer bs-footer">
+              <div class="bs-footer__top">
+                <div class="bs-container">
+                  <div class="bs-row">
+                    <div class="bs-col-xs-12 bs-footer__top-col">
+                      <div class="bs-footer__map bs-footer-nav">
+                        <div class="bs-footer-nav__group bs-js-footer-accordion-item"> 
+                          <h4 class="bs-footer-nav__title bs-js-footer-accordion-item--title">Produtos
+                          </h4>
+                          <ul class="bs-footer-nav__list bs-js-footer-accordion-item--content">
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Auto</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Capitalização</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Dental</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Previdência</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Residencial</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Saúde</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Vida</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Outros Seguros</a></li>
+                          </ul>
+                        </div>
+                        <div class="bs-footer-nav__group bs-js-footer-accordion-item"> 
+                          <h4 class="bs-footer-nav__title bs-js-footer-accordion-item--title">Empresas do Grupo
+                          </h4>
+                          <ul class="bs-footer-nav__list bs-js-footer-accordion-item--content">
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Bradesco Auto/RE</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Capitalização</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Bradesco Multipensions</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Bradesco Saúde</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Bradesco Vida e Previdência</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">BSP Empreendimentos Imobiliários</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">MediService</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">OdontoPrev/Bradesco Dental</a></li>
+                          </ul>
+                        </div>
+                        <div class="bs-footer-nav__group bs-js-footer-accordion-item"> 
+                          <h4 class="bs-footer-nav__title bs-js-footer-accordion-item--title">Atendimento
+                          </h4>
+                          <ul class="bs-footer-nav__list bs-js-footer-accordion-item--content">
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Assessoria de Imprensa</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Central de Relacionamento</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Trabalhe Conosco</a></li>
+                          </ul>
+                        </div>
+                        <div class="bs-footer-nav__group bs-js-footer-accordion-item"> 
+                          <h4 class="bs-footer-nav__title bs-js-footer-accordion-item--title">Para Empresas
+                          </h4>
+                          <ul class="bs-footer-nav__list bs-js-footer-accordion-item--content">
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Soluções para Empresas</a></li>
+                          </ul>
+                        </div>
+                        <div class="bs-footer-nav__group bs-js-footer-accordion-item"> 
+                          <h4 class="bs-footer-nav__title bs-js-footer-accordion-item--title">Corretor
+                          </h4>
+                          <ul class="bs-footer-nav__list bs-js-footer-accordion-item--content">
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Seja um Corretor</a></li>
+                          </ul>
+                        </div>
+                        <div class="bs-footer-nav__group bs-js-footer-accordion-item"> 
+                          <h4 class="bs-footer-nav__title bs-js-footer-accordion-item--title">Assistência para Clientes
+                          </h4>
+                          <ul class="bs-footer-nav__list bs-js-footer-accordion-item--content">
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Assistência Dia e Noite</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Central de Sinistro</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Busca de Médicos</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Busca de Dentistas</a></li>
+                            <li class="bs-footer-nav__item"><a class="bs-footer-nav__link" href="#" target="_blank">Resultado de Sorteios</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bs-footer__anchor">
+                <button class="bs-footer-anchor js-back-to-top"><i class="icon-seta-cima-b" aria-hidden="true"></i>voltar ao topo</button>
+              </div>
+              <div class="bs-footer__bottom">
+                <div class="bs-container">
+                  <div class="bs-row bs-middle-xs bs-center-xs">
+                    <div class="bs-col-xs-12 bs-col-sm-6 bs-last-sm">
+                      <ul class="bs-social__list bs-footer-social__list">
+                        <li class="bs-social__item"><a class="bs-social__link" href="#"><i class="icon-redes-twitter" aria-hidden="true"></i></a></li>
+                        <li class="bs-social__item"><a class="bs-social__link" href="#"><i class="icon-redes-facebook" aria-hidden="true"></i></a></li>
+                        <li class="bs-social__item"><a class="bs-social__link" href="#"><i class="icon-redes-youtube" aria-hidden="true"></i></a></li>
+                        <li class="bs-social__item"><a class="bs-social__link" href="#"><i class="icon-redes-linkedin" aria-hidden="true"></i></a></li>
+                      </ul>
+                    </div>
+                    <div class="bs-col-xs-12 bs-col-sm-6"><small class="bs-footer-rights">Bradesco Seguros 2019. Todos os direitos reservados.</small></div>
+                  </div>
+                </div>
+              </div>
+            </footer>
+      </section>
 </body>
 </head>
 </html>
