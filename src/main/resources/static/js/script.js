@@ -8,10 +8,14 @@ $(document).ready(function () {
 		  contentType: "application/json; charset=utf-8",
 		  success: function (data) {
 		          var selectbox = $('#estadoCivil');
+		          selectbox.append('<option value="" disabled selected hidden>' + 'Estado Civil' + '</option>');
 		          $.each(data, function (i, d) {
+		          	  
 		              selectbox.append('<option value="' + d.idDominio+ '">' + d.valor + '</option>');
 		          });
 		  } });
+		  
+		 
 });
 
 
@@ -24,6 +28,7 @@ $(document).ready(function () {
 		  contentType: "application/json; charset=utf-8",
 		  success: function (data) {
 		          var selectbox = $('#genero');
+		          selectbox.append('<option value="" disabled selected hidden>' + 'Gênero' + '</option>');
 		          $.each(data, function (i, d) {
 		              selectbox.append('<option value="' + d.idDominio+ '">' + d.valor + '</option>');
 		          });
@@ -66,31 +71,6 @@ $(document).ready(function(){
     });
 });
 
-
-//Carrega Tabela
-$(document).on("click", "#btn", function () {
-		$.ajax ({
-			type: 'GET',
-			url: '/ranking/fromuserdataArq',
-			dataType: 'json',
-			contentType: 'application/json',
-			success: function(result){		
-				 var table = '';
-				 table += '<tr><th>ID</th><th>Id</th><th>Desc.Produto</th><th>Desc.Plano</th><th>Nm.Ramo</th><th>Rating</th></tr>';
-				  var x = 0;
-				  while (x < result.length) {
-				    table += '<tr><td id="id_produto">' + result[x].id_produto + '</td>';
-				    table += '<td id="id_plano">' + result[x].id_plano + '</td>';
-				    table += '<td id="descProduto">' + result[x].descProduto + '</td>';
-				    table += '<td id="descPlano">' + result[x].descPlano + '</td>';
-				    table += '<td id="nm_ramo">' + result[x].nm_ramo + '</td>';
-				    table += '<td id="rating">' + result[x].rating + '</td></tr>';
-				    x++;
-				  }
-				  $('#table tbody').html(table);
-			}
-		});
-	});
 	
 //Carrega Dados Form
 $(document).on("click", "#btPesquisar", function () {
@@ -107,19 +87,74 @@ $(document).on("click", "#btPesquisar", function () {
 		dataType: 'json',
 		contentType: 'application/json',
 		success: function(result){	
-			
-			 var y = 0;
-			 table += '<tr><th>Gênero</th><th>Estado Civil</th><th>Peso</th><th>Idade</th></tr>';
-			  while (y < result.length) {
-			    table += '<tr><td id="genero">' + result[y].genero + '</td>';
-			    table += '<td id="estadoCivil">' + result[y].estadoCivil + '</td>';
-			    table += '<td id="peso">' + result[y].peso + '</td>';
-			    table += '<td id="idade">' + result[y].idade + '</td></tr>';
-			    y++;
-			  }
-
-			$('#Modaltable tbody').html(table);
+				 var table = '';
+				 table += '<tr>';
+				// table += '<th>ID</th>';
+				 // table +='<th>Id</th>';
+				 	  table+='<th>Rating</th>';
+				    table+='<th>Nm.Ramo</th>';
+				   table += '<th>Desc.Produto</th>';
+				   table+='<th>Desc.Plano</th>';
+				
+				 
+				   table+='</tr>';
+				  var x = 0;
+				  while (x < result.length) {
+				  table += '<tr>';
+				  //  table += '<td id="id_produto">' + result[x].id_produto + '</td>';
+				  //  table += '<td id="id_plano">' + result[x].id_plano + '</td>';
+				      table += '<td id="rating">' + result[x].rating + '</td>';
+				        table += '<td id="nm_ramo">' + result[x].nm_ramo + '</td>';
+				    table += '<td id="descProduto">' + result[x].descProduto + '</td>';
+				    table += '<td id="descPlano">' + result[x].descPlano + '</td>';
+				    table+='</tr>';
+				  
+				
+				    x++;
+				  }
+				  $('#Modaltable tbody').html(table);
 		}
 	});
 });	
 
+
+$(document).ready(function(){
+
+
+	
+	
+	$.ajax ({
+		type: 'GET',
+		url: '/ranking/fromuserdataArq2?id_modelo=1&genero=1&estadocivil=1&peso=60.1&idade=20',
+		dataType: 'json',
+		contentType: 'application/json',
+		success: function(result){	
+				 var table = '';
+				 table += '<tr>';
+				// table += '<th>ID</th>';
+				 // table +='<th>Id</th>';
+				 	  table+='<th>Rating</th>';
+				    table+='<th>Nm.Ramo</th>';
+				   table += '<th>Desc.Produto</th>';
+				   table+='<th>Desc.Plano</th>';
+				
+				 
+				   table+='</tr>';
+				  var x = 0;
+				  while (x < result.length) {
+				  table += '<tr>';
+				  //  table += '<td id="id_produto">' + result[x].id_produto + '</td>';
+				  //  table += '<td id="id_plano">' + result[x].id_plano + '</td>';
+				      table += '<td id="rating">' + result[x].rating + '</td>';
+				        table += '<td id="nm_ramo">' + result[x].nm_ramo + '</td>';
+				    table += '<td id="descProduto">' + result[x].descProduto + '</td>';
+				    table += '<td id="descPlano">' + result[x].descPlano + '</td>';
+				    table+='</tr>';
+				  
+				
+				    x++;
+				  }
+				  $('#Modaltable tbody').html(table);
+		}
+	});
+});	

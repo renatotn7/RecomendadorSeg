@@ -122,62 +122,51 @@
                 </div>
               </header>
             </div>
-      </section>
-      
+
 
 <section>
 	<div class="container">
 		<div><br />
-			<form class="bs-form" method="get">
+			<form class="bs-form" method="get" action="pesquisa.html">
 				<div class="bs-form__control">
-					<label for="estadoCivil" class="bs-form__label">Estado Civil:</label>
-						<select name="estCivil" id="estadoCivil" class="bs-form__field"></select>
+						<select name="estCivil" id="estadoCivil" class="bs-form__field" required></select>
 				</div>
 				<div class="bs-form__control">
-					<label for="genero" class="bs-form__label">Gênero:</label>
-						<select name="gen" id="genero" class="bs-form__field"></select>
+						<select name="gen" id="genero" class="bs-form__field" required></select>	
 				</div>
 				<div class="bs-form__control">	
-					<label for="peso" class="bs-form__label">Peso(Kg):</label>
-						<input type="number" id="peso" name="peso" class="bs-form__field" /> 
+					<label class="bs-form__label bs-form__label--adaptive" for="peso">
+						<input type="number" id="peso" name="peso" class="bs-form__field" data-validate-type="peso" required><span class="bs-form__label-text">Peso</span> 
+					</label>	
 				</div>
 				<div class="bs-form__control">	
-					<label for="idade" class="bs-form__label">Idade:</label>
-						<input type="number" id="idade" name="idade" class="bs-form__field" /> 
+					<label class="bs-form__label bs-form__label--adaptive" for="idade">
+						<input type="number" id="idade" name="idade" class="bs-form__field" data-validate-type="idade" required><span class="bs-form__label-text">Idade</span>
+					</label>	
 				</div>		
-				<div class="bs-button-group">
-            		<a href="#janela1" rel="modal" class="bs-button" id="btPesquisar">Pesquisar</a>
-            	</div>
+<!-- 				<div class="bs-button-group"> -->
+<!--             		<a href="#janela1" rel="modal" class="bs-button" id="btPesquisar">Pesquisar</a> -->
+<!--             	</div> -->
             	
-            	<div class="window" id="janela1"> 
-            	<a href="#" class="fechar">X Fechar</a>    
-					<!-- Conteúdo Modal --> 
-					<table class="table table-bordered table-striped" id="Modaltable">
-						<tbody></tbody>	
-					</table>
-				</div>
-				<!-- mascara para cobrir o site --> 
-				<div id="mascara"></div>
+            	<input type="submit" value="Enviar" class="bs-button" />
+            	
+<!--             	<div class="window" id="janela1">  -->
+<!--             	<a href="#" class="fechar">X Fechar</a>     -->
+<!-- 					Conteúdo Modal  -->
+<!-- 					<table class="table table-bordered table-striped" id="Modaltable"> -->
+<!-- 						<tbody></tbody>	 -->
+<!-- 					</table> -->
+<!-- 				</div> -->
+<!-- 				mascara para cobrir o site  -->
+<!-- 				<div id="mascara"></div> -->
 			</form>
 		</div>
 		
-		<div class="bs-button-group">
-			<a href="#janela2" rel="modal" class="bs-button bs-button--ghost bs-button--primary" id="btn">Mostrar Tabela</a>
-		</div>
-		<div class="window" id="janela2"> 
-            	<a href="#" class="fechar">X Fechar</a>    
-					<!-- Conteúdo Modal --> 
-			<div class="table-responsive">
-				<br />
-				<table class="table table-bordered table-striped table-sm" id="table">
-					<tbody></tbody>	
-				</table>
-			</div>
-		</div>		
+				
 	</div>
 	
 </section>
-
+	
 <section id="map">
             <footer class="section comp-footer bs-footer">
               <div class="bs-footer__top">
