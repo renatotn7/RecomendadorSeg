@@ -12,6 +12,7 @@ $(document).ready(function () {
 		          $.each(data, function (i, d) {
 		          	  
 		              selectbox.append('<option value="' + d.idDominio+ '">' + d.valor + '</option>');
+		              
 		          });
 		  } });
 		  

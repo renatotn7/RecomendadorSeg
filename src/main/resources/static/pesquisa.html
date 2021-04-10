@@ -26,6 +26,13 @@ $(document).ready(function(){
 	const genero = urlParams.get('gen');
 	const peso = urlParams.get('peso');
 	const idade = urlParams.get('idade');
+	
+	$('#estCivil').html(estCivil);
+	$('#gene').html(genero);
+	$('#pes').html(peso);
+	$('#idade_').html(idade);
+
+	
 });	
 </script>
 
@@ -141,6 +148,15 @@ $(document).ready(function(){
 <section>
 	
 	<div class="container">
+		<div>Exibindo resultados para:
+		Estado Civil: <span id="estCivil"></span>,
+		Gênero: <span id="gene"></span>,
+		Peso: <span id="pes"></span>,
+		Idade: <span id="idade_"></span>.
+		</div>
+			
+			
+		
 		<br />
 		<table class="table table-bordered table-striped" id="Modaltable">
 			<tbody></tbody>	

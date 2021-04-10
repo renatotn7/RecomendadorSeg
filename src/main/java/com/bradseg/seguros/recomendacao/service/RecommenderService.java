@@ -1,5 +1,6 @@
 package com.bradseg.seguros.recomendacao.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -24,23 +25,44 @@ import br.com.bradseg.sise.apolicevida.utils.serializacao.Serializacao;
 
 public class RecommenderService {
 	
+	
+
 	public static RecomendacaoFacadeImpl recomendacaoFacade = new RecomendacaoFacadeImpl();
-	
 	 @RequestMapping(value="/dominio/estadocivil",method = RequestMethod.GET)
-	 public List<DominioDTO> dominioestadocivil() {
-		// Serializacao.gravarArquivoBinario( recomendacaoFacade.getDominioEstadoCivil(), "GeneroList.obj");//lerArquivoBinario("RatingsList.obj");
-		 return (List) Serializacao.lerArquivoBinario("GeneroList.obj");
-		// return recomendacaoFacade.getDominioEstadoCivil();
-		 
-	 }
-	
-	
+	 public List<DominioDTO> dominioestadocivil(@RequestParam(defaultValue = "-1") Integer id) {
+		 List<DominioDTO> dominios= ( List ) Serializacao.lerArquivoBinario ( "GeneroList.obj" );
+		 // SexoList.obj
+		 if(id ==-1) {
+			 return dominios;	
+			 }else {
+				 for(DominioDTO dominio : dominios) {
+					 if(dominio.getIdDominio()==id) {
+						 List<DominioDTO> listec = new ArrayList<DominioDTO>();
+						 listec.add(dominio);
+						 return listec;
+					 }
+				 }
+			 }
+			 
+			 return null;
+		 }
 	 @RequestMapping(value="/dominio/genero",method = RequestMethod.GET)
-	 public  List<DominioDTO>  dominiosexo() {
-		 //Serializacao.gravarArquivoBinario( recomendacaoFacade.getDominioSexo(), "SexoList.obj");//lerArquivoBinario("RatingsList.obj");
-		
-		 return (List) Serializacao.lerArquivoBinario("SexoList.obj");
-		 //return recomendacaoFacade.getDominioSexo();
+	 public  List<DominioDTO>  dominioGenero(@RequestParam(defaultValue = "-1") Integer id) {
+		 List<DominioDTO> dominios= ( List ) Serializacao.lerArquivoBinario ( "SexoList.obj" );
+		 //List<DominioDTO> dominios= recomendacaoFacade.getDominioSexo()
+		 if(id ==-1) {
+		 return dominios;
+		 }else {
+			 for(DominioDTO dominio :dominios) {
+				 if(dominio.getIdDominio()==id) {
+					 List<DominioDTO> listsexo = new ArrayList<DominioDTO>();
+					 listsexo.add(dominio);
+					 return listsexo;
+				 }
+			 }
+		 }
+		 
+		 return null;
 	 }
 	 
 	 @RequestMapping(value="/dominio/consultasdisponiveis",method = RequestMethod.GET)
