@@ -16,9 +16,10 @@ public class ItemRankVO implements Serializable {
 	public void setNm_ramo(String nm_ramo) {
 		this.nm_ramo = nm_ramo;
 	}
-	Integer id_produto,  id_plano;
+	Integer id_produto,  id_plano, deduzido;
 	String descProduto, descPlano;
 	String nm_ramo;
+	
 	public String getDescProduto() {
 		return descProduto;
 	}
@@ -38,13 +39,14 @@ public class ItemRankVO implements Serializable {
 	
 	
 	
-	public ItemRankVO( Integer id_produto,Integer id_plano, String descProduto,String descPlano, String nm_ramo, Double rating) {
+	public ItemRankVO( Integer id_produto,Integer id_plano, String descProduto,String descPlano, String nm_ramo, Double rating,Integer deduzido) {
 		setId_plano(id_plano);
 		setId_produto(id_produto);
 		setRating(rating);
 		setDescPlano(descPlano);
 		setDescProduto(descProduto);
 		setNm_ramo(nm_ramo);
+		setDeduzido(deduzido);
 		
 		
 	}
@@ -66,6 +68,14 @@ public class ItemRankVO implements Serializable {
 	}
 	public void setRating(Double ponto) {
 		this.rating = ponto;
+	}
+
+	public Integer getDeduzido() {
+		return deduzido;
+	}
+
+	public void setDeduzido(Integer deduzido) {
+		this.deduzido = deduzido;
 	}
 	
 }
