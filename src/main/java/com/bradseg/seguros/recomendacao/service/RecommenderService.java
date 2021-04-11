@@ -125,8 +125,11 @@ public class RecommenderService {
 			 throw new Exception();
 		 }
 		 
-		 return (List) Serializacao.lerArquivoBinario("RatingsList.obj");
-	//	 return  recomendacaoFacade.recuperaDadosFromModelo(1,0,0,0,0);
+		//Serializacao.gravarArquivoBinario( recomendacaoFacade.recuperaDadosFromModelo(id_modelo,genero,estadocivil,2,4), "RatingsList.obj");
+		 
+		return (List) Serializacao.lerArquivoBinario("RatingsList.obj");
+		 //tem que ser calculado faixa peso e faiza idade
+	//return  recomendacaoFacade.recuperaDadosFromModelo(id_modelo,genero,estadocivil,2,4);
 		 //fazer um servi�o para saber configura��es de perfis sao possiveis mostrar ao usuario
 		
 		 

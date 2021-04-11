@@ -185,7 +185,7 @@ public class RecomendacaoDAOImpl {
 		 StringBuilder sql =  new StringBuilder();
 			try {
 				sql.append("  select  a.cd_produto,a.cd_plano,b.NM_PRODUTO,c.nm_plano, e.nm_RM_SUSEP,  round (isnull(rating,ratinginf) ,3) rating, case when a.rating is null then 1 when a.rating is not null then 0 end deduzido from mdl_modelo_item a,PRD_PRODUTO b, prd_plano c,tbg_ramo d,tbg_ramo_susep e where id_modelo = 1 and a.cd_produto = b.cd_produto and c.cd_produto = b.cd_produto and c.cd_plano = a.cd_plano and b.CD_PRODUTO=c.CD_PRODUTO and b.CD_RM = d.CD_RM and d.CD_RM_SUSEP = e.CD_RM_SUSEP\r\n" + 
-						" and id_modelo = 1 and classe_peso = 6 and faixa_idade = 4 and sexosegurado = 1 and estadocivil=1\r\n" + 
+						" and id_modelo = "+id_modelo+" and classe_peso = 4 and faixa_idade = 4 and sexosegurado = "+sexosegurado+" and estadocivil="+estadocivil+"\r\n" + 
 						"  order by round (isnull(rating,ratinginf) ,3)  desc");
 				//sql.append(" grp.cGrpDomnoUnfcaServc,");
 				stmt = connection.prepareStatement(sql.toString());
