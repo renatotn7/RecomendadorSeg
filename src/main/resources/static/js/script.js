@@ -135,15 +135,19 @@ $(document).ready(function(){
 				// table += '<th>ID</th>';
 				 // table +='<th>Id</th>';
 				 	  table+='<th>Rating</th>';
-				    table+='<th>Nm.Ramo</th>';
-				   table += '<th>Desc.Produto</th>';
-				   table+='<th>Desc.Plano</th>';
+				    table+='<th>Ramo</th>';
+				   table += '<th>Produto</th>';
+				   table+='<th>Plano</th>';
 				
 				 
 				   table+='</tr>';
 				  var x = 0;
 				  while (x < result.length) {
-				  table += '<tr>';
+					if(result[x].deduzido==0){
+						table += '<tr>';
+					}else{
+						table += '<tr style="background-color:#EBF9E8;">';
+					}
 				  //  table += '<td id="id_produto">' + result[x].id_produto + '</td>';
 				  //  table += '<td id="id_plano">' + result[x].id_plano + '</td>';
 				      table += '<td id="rating">' + result[x].rating + '</td>';
