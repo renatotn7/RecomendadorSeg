@@ -36,6 +36,9 @@ $(document).ready(function () {
 		  } });
 });
 
+
+
+
 //Janela Modal
 $(document).ready(function(){
     $("a[rel=modal]").click( function(ev){
@@ -80,11 +83,12 @@ $(document).on("click", "#btPesquisar", function () {
 	var genero = $("#genero").val();
 	var idade = $("#idade").val();
 	var peso = $("#peso").val();
+	var altura = $("#altura").val();
 	var table = '';
-			
+	alert('oi2 ')
 	$.ajax ({
 		type: 'GET',
-		url: '/ranking/fromuserdataArq2?id_modelo=1&genero='+genero+'&estadocivil='+civil+'&peso='+peso+'&idade='+idade+'',
+		url: '/ranking/fromuserdataArq2?id_modelo=1&genero='+genero+'&estadocivil='+civil+'&peso='+peso+'&idade='+idade+'&altura='+altura+'',
 		dataType: 'json',
 		contentType: 'application/json',
 		success: function(result){	
@@ -93,9 +97,9 @@ $(document).on("click", "#btPesquisar", function () {
 				// table += '<th>ID</th>';
 				 // table +='<th>Id</th>';
 				 	  table+='<th>Rating</th>';
-				    table+='<th>Nm.Ramo</th>';
-				   table += '<th>Desc.Produto</th>';
-				   table+='<th>Desc.Plano</th>';
+				    table+='<th>Ramo</th>';
+				   table += '<th>Produto</th>';
+				   table+='<th>Plano</th>';
 				
 				 
 				   table+='</tr>';
@@ -120,16 +124,29 @@ $(document).on("click", "#btPesquisar", function () {
 
 
 $(document).ready(function(){
-
-
+	
+	const urlParams = new URLSearchParams(location.search);
+	
+	var civil = urlParams.get('estCivil') //$("#estadoCivil").val();
+	
+	var genero =urlParams.get('gen')  
+	var idade = urlParams.get('idade')  
+	var peso =urlParams.get('peso')
+	var altura = urlParams.get('altura')
+	var table = '';	
 	
 	
 	$.ajax ({
 		type: 'GET',
-		url: '/ranking/fromuserdataArq2?id_modelo=1&genero=1&estadocivil=1&peso=60.1&idade=20',
+	//	url: '/ranking/fromuserdataArq2?id_modelo=1&genero=1&estadocivil=1&peso=60.1&altura=1.71&idade=20',
+		url: '/ranking/fromuserdataArq2?id_modelo=1&genero='+genero+'&estadocivil='+civil+'&peso='+peso+'&idade='+idade+'&altura='+altura+'',
+		
 		dataType: 'json',
 		contentType: 'application/json',
 		success: function(result){	
+				 var confiabilidade=0;
+				 var percentual=0.0
+				 var count=0.0
 				 var table = '';
 				 table += '<tr>';
 				// table += '<th>ID</th>';
@@ -143,7 +160,9 @@ $(document).ready(function(){
 				   table+='</tr>';
 				  var x = 0;
 				  while (x < result.length) {
+					  count++;
 					if(result[x].deduzido==0){
+						confiabilidade++;
 						table += '<tr>';
 					}else{
 						table += '<tr style="background-color:#EBF9E8;">';
@@ -159,6 +178,20 @@ $(document).ready(function(){
 				
 				    x++;
 				  }
+				  if(confiabilidade <1){
+					  $('#conf').html("impreciso");
+				  }else
+				  if(confiabilidade <3){
+					  $('#conf').html("baixa precisão");
+				  }else
+					
+				  if(confiabilidade < 5){
+					  $('#conf').html("maior precisao se 5 estatisticas");
+				  }else{
+					  $('#conf').html("ok");
+				  }
+				  percentual = ((count-confiabilidade)/count)*100
+				  $('#conf').html($('#conf').html()+' ('+(Math.round(percentual*100)/100)+'% inferido)');
 				  $('#Modaltable tbody').html(table);
 		}
 	});

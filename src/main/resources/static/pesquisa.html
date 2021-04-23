@@ -23,13 +23,46 @@
 $(document).ready(function(){
 	const urlParams = new URLSearchParams(window.location.search);
 	const estCivil = urlParams.get('estCivil');
+	
 	const genero = urlParams.get('gen');
 	const peso = urlParams.get('peso');
+	const altura = urlParams.get('altura');
 	const idade = urlParams.get('idade');
 	
-	$('#estCivil').html(estCivil);
-	$('#gene').html(genero);
+	
+	$.ajax({
+		  type: "get",
+		  url: "/dominio/genero",
+		  data: { tipos: $("#genero").val() },
+		  dataType: 'json',
+		  contentType: "application/json; charset=utf-8",
+		  success: function (data) {
+		          
+		          $.each(data, function (i, d) {
+		          	if(genero==d.idDominio){
+		          		$('#gene').html(d.valor);
+		          	}
+		             
+		          });
+		  } });
+		  $.ajax({
+		  type: "get",
+		  url: "/dominio/estadocivil",
+		  data: { tipos: $("#estadocivil").val() },
+		  dataType: 'json',
+		  contentType: "application/json; charset=utf-8",
+		  success: function (data) {
+		          
+		          $.each(data, function (i, d) {
+		          	if(estCivil==d.idDominio){
+		          		$('#estCivil').html(d.valor);
+		          	}
+		             
+		          });
+		  } });
+	
 	$('#pes').html(peso);
+	$('#altura').html(altura);
 	$('#idade_').html(idade);
 
 	
@@ -148,11 +181,16 @@ $(document).ready(function(){
 <section>
 	
 	<div class="container">
-		<div>Exibindo resultados para:
-		Estado Civil: <span id="estCivil"></span>,
-		Gênero: <span id="gene"></span>,
-		Peso: <span id="pes"></span>,
-		Idade: <span id="idade_"></span>.
+	
+		<div>
+		<div style="padding:10px;margin-top:20px;background-color:#f6f6f6;color:#885555;text-align:center;">
+	<h2>Modelo Temporal</h2>
+		<h3><span id="estCivil"></span>&nbsp&nbsp&nbsp
+		<span id="gene"></span>&nbsp&nbsp&nbsp
+		 <span id="pes"></span>&nbspKg&nbsp&nbsp&nbsp
+		  <span id="altura"></span>&nbspm&nbsp&nbsp&nbsp
+		 <span id="idade_"></span>&nbspanos</h3>
+		confiabilidade: <span id="conf"></span>
 		</div>
 			
 			

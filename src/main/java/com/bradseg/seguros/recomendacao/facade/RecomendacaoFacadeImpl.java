@@ -16,8 +16,10 @@ public class RecomendacaoFacadeImpl {
 	public List<DominioDTO> getDominioSexo() {
 		return recomendacaoDAO.recuperaSexo();
 	}
-	public List<ItemRankVO>  recuperaDadosFromModelo(int id_modelo,int sexosegurado,int estadocivil, int  classe_peso,int faixa_idade) {
-		return recomendacaoDAO.recuperaDadosFromModelo(id_modelo,sexosegurado,estadocivil,classe_peso,faixa_idade);
+	public List<ItemRankVO>  recuperaDadosFromModelo(int id_modelo,int sexosegurado,int estadocivil, double peso, double altura, int idade) {
+		//classe peso e faixa idade tem que ser transformado
+		double imc = peso/(altura*altura);
+		return recomendacaoDAO.recuperaDadosFromModelo(id_modelo,sexosegurado,estadocivil,imc,idade);
 	}
 		
 

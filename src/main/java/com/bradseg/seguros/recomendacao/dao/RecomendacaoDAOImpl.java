@@ -41,7 +41,7 @@ public class RecomendacaoDAOImpl {
 	}
 	public void closeModeloRank(Long idmodelo) throws SQLException {
 		initConnection();
-		
+		//upInserePrdSimpFinalizaMdlItem_produto
 		String ssql = "{call dbo.[upInserePrdSimpFinalizaMdlItem](@idModelo)}";
 		ssql	=StringsUtils.replaceFor(ssql, idmodelo, "@idModelo");
 		stmt = connection.prepareStatement(ssql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
@@ -50,8 +50,9 @@ public class RecomendacaoDAOImpl {
 		  
 	}
 	public void insertItemRank(Long idmodelo,Integer user, Integer item, Double rating, Double inferido ) throws SQLException {
-
-		
+		//	"[upInserePrdSimpMdlItem_produto]";
+		//   [upInserePrdSimpMdlItem_plano_produto]
+		//	"[upInserePrdSimpMdlItem_ramo]";
 			initConnection();
 		   
 			
@@ -70,6 +71,27 @@ public class RecomendacaoDAOImpl {
 			connection.commit();
 		
 	}
+	public void insertItemRank(String procedure, Long idmodelo,Integer user, Integer item, Double rating, Double inferido ) throws SQLException {
+
+		
+		initConnection();
+	   
+		
+		String result = "";
+
+		String ssql = "{call dbo."+procedure+" (@idModelo,@user,@item,@rating,@inferido)}";
+
+	ssql	=StringsUtils.replaceFor(ssql, idmodelo, "@idModelo");
+	ssql	=StringsUtils.replaceFor(ssql, user, "@user");
+	ssql	=StringsUtils.replaceFor(ssql, item, "@item");
+	ssql	=StringsUtils.replaceFor(ssql, rating, "@rating");
+	ssql	=StringsUtils.replaceFor(ssql, inferido, "@inferido");
+		//ResultSet rs = statement.executeQuery(sqlconsultas);
+		stmt = connection.prepareStatement(ssql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+		stmt.execute();
+		connection.commit();
+	
+}
 	public List<DominioDTO> recuperaEstadoCivil(){
 		 List<DominioDTO> dominios = new ArrayList<DominioDTO>(2);
 		 initConnection();
@@ -179,13 +201,14 @@ public class RecomendacaoDAOImpl {
 	
 
 	
-	public List<ItemRankVO>  recuperaDadosFromModelo(int id_modelo,int sexosegurado,int estadocivil, int  classe_peso,int faixa_idade) {
+	public List<ItemRankVO>  recuperaDadosFromModelo(int id_modelo,int sexosegurado,int estadocivil, double  imc, int idade) {
 		 List<ItemRankVO> ratings = new  ArrayList<ItemRankVO> (2000);
 		 initConnection();
 		 StringBuilder sql =  new StringBuilder();
 			try {
 				sql.append("  select  a.cd_produto,a.cd_plano,b.NM_PRODUTO,c.nm_plano, e.nm_RM_SUSEP,  round (isnull(rating,ratinginf) ,3) rating, case when a.rating is null then 1 when a.rating is not null then 0 end deduzido from mdl_modelo_item a,PRD_PRODUTO b, prd_plano c,tbg_ramo d,tbg_ramo_susep e where id_modelo = 1 and a.cd_produto = b.cd_produto and c.cd_produto = b.cd_produto and c.cd_plano = a.cd_plano and b.CD_PRODUTO=c.CD_PRODUTO and b.CD_RM = d.CD_RM and d.CD_RM_SUSEP = e.CD_RM_SUSEP\r\n" + 
-						" and id_modelo = "+id_modelo+" and classe_peso = 4 and faixa_idade = 4 and sexosegurado = "+sexosegurado+" and estadocivil="+estadocivil+"\r\n" + 
+						" and id_modelo = "+id_modelo+" and classe_peso = (SELECT VALOR FROM rn_dominio_faixas_valor WHERE  "+imc+" BETWEEN DE AND ATE AND CD_DOMINIO='IMC') and faixa_idade = (SELECT VALOR FROM rn_dominio_faixas_valor WHERE  "+idade+" >=  DE AND "+idade+"< ATE AND CD_DOMINIO='IDADE')  and sexosegurado = "+sexosegurado+" and estadocivil="+estadocivil+"\r\n" + 
+						
 						"  order by round (isnull(rating,ratinginf) ,3)  desc");
 				//sql.append(" grp.cGrpDomnoUnfcaServc,");
 				stmt = connection.prepareStatement(sql.toString());

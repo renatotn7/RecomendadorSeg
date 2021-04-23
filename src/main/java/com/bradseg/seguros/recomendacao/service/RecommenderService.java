@@ -104,8 +104,8 @@ public class RecommenderService {
 		 return "ola";
 	 }
 	 @RequestMapping(value="/ranking/fromuserdata",method = RequestMethod.GET)
-	 public List<ItemRankVO> userdata(@RequestParam int id_modelo,@RequestParam int sexosegurado,@RequestParam int estadocivil, @RequestParam int  classe_peso,@RequestParam int faixa_idade) {
-		 return  recomendacaoFacade.recuperaDadosFromModelo(id_modelo,sexosegurado,estadocivil,classe_peso,faixa_idade);
+	 public List<ItemRankVO> userdata(@RequestParam int id_modelo,@RequestParam int sexosegurado,@RequestParam int estadocivil, @RequestParam Double  peso,@RequestParam Double  altura,@RequestParam int idade) {
+		 return  recomendacaoFacade.recuperaDadosFromModelo(id_modelo,sexosegurado,estadocivil,peso,altura,idade);
 		 //fazer um servi�o para saber configura��es de perfis sao possiveis mostrar ao usuario
 		
 		 
@@ -120,16 +120,16 @@ public class RecommenderService {
 		 
 	 }
 	 @RequestMapping(value="/ranking/fromuserdataArq2",method = RequestMethod.GET)
-	 public List<ItemRankVO> userdata(@RequestParam Integer id_modelo,@RequestParam Integer genero,@RequestParam Integer estadocivil, @RequestParam Double  peso,@RequestParam Integer idade) throws Exception {
+	 public List<ItemRankVO> userdata(@RequestParam Integer id_modelo,@RequestParam Integer genero,@RequestParam Integer estadocivil, @RequestParam Double  peso,@RequestParam Double  altura,@RequestParam Integer idade) throws Exception {
 		 if(genero==null || id_modelo==null || estadocivil==null|| peso==null|| estadocivil==null) {
 			 throw new Exception();
 		 }
 		 
 		//Serializacao.gravarArquivoBinario( recomendacaoFacade.recuperaDadosFromModelo(id_modelo,genero,estadocivil,2,4), "RatingsList.obj");
 		 
-		return (List) Serializacao.lerArquivoBinario("RatingsList.obj");
+		//return (List) Serializacao.lerArquivoBinario("RatingsList.obj");
 		 //tem que ser calculado faixa peso e faiza idade
-	//return  recomendacaoFacade.recuperaDadosFromModelo(id_modelo,genero,estadocivil,2,4);
+	return  recomendacaoFacade.recuperaDadosFromModelo(id_modelo,genero,estadocivil,peso, altura,idade);
 		 //fazer um servi�o para saber configura��es de perfis sao possiveis mostrar ao usuario
 		
 		 
